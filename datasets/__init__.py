@@ -1,3 +1,5 @@
+import os
 import sys
-sys.path.append('C:\\Users\\sbhalla\\Documents\\git-repos\\datasets\\datasets')
-from MNIST.parsers.parser_main import *
+dir_path = os.path.dirname(os.path.realpath(__file__))
+sys.path.append(dir_path)
+from MNIST.parser_main import *

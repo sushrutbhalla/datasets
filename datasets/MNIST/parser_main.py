@@ -18,7 +18,8 @@ import numpy as np
 
 # the url can be changed by the users of the library (not a constant)
 datasets_url = 'http://yann.lecun.com/exdb/mnist/'
-dataset_dir = 'C:\\Users\\sbhalla\\Documents\\git-repos\\datasets\\datasets\\MNIST\\'
+dir_path = os.path.dirname(os.path.realpath(__file__))
+dataset_dir = dir_path+"/data/"
 
 
 class IdxDecodeError(ValueError):
@@ -26,8 +27,8 @@ class IdxDecodeError(ValueError):
     pass
 
 class mnist():
-    def __init__(self):
-        pass
+    def __init__(self, data_dir=dataset_dir):
+        self.data_dir = data_dir+'/'
 
     def download_file(self, fname, target_dir=None, force=False):
         """Download fname from the datasets_url, and save it to target_dir,
@@ -170,7 +171,7 @@ class mnist():
             columns of the image
         """
         if download: return self.download_and_parse_mnist_file('train-images-idx3-ubyte.gz')
-        else: return self.parse_mnist_file(dataset_dir+'train-images-idx3-ubyte.gz')
+        else: return self.parse_mnist_file(self.data_dir+'train-images-idx3-ubyte.gz')
 
 
     def test_images(self, download=True):
@@ -186,7 +187,7 @@ class mnist():
             columns of the image
         """
         if download: return self.download_and_parse_mnist_file('t10k-images-idx3-ubyte.gz')
-        else: return self.parse_mnist_file(dataset_dir+'t10k-images-idx3-ubyte.gz')
+        else: return self.parse_mnist_file(self.data_dir+'t10k-images-idx3-ubyte.gz')
 
 
     def train_labels(self, download=True):
@@ -200,7 +201,7 @@ class mnist():
             Numpy array with the labels 0 to 9 in the train MNIST database.
         """
         if download: return self.download_and_parse_mnist_file('train-labels-idx1-ubyte.gz')
-        else: return self.parse_mnist_file(dataset_dir+'train-labels-idx1-ubyte.gz')
+        else: return self.parse_mnist_file(self.data_dir+'train-labels-idx1-ubyte.gz')
 
 
     def test_labels(self, download=True):
@@ -214,7 +215,7 @@ class mnist():
             Numpy array with the labels 0 to 9 in the train MNIST database.
         """
         if download: return self.download_and_parse_mnist_file('t10k-labels-idx1-ubyte.gz')
-        else: return self.parse_mnist_file(dataset_dir+'t10k-labels-idx1-ubyte.gz')
+        else: return self.parse_mnist_file(self.data_dir+'t10k-labels-idx1-ubyte.gz')
 
 
     def get_mnist_data(self):

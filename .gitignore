@@ -1,2 +1,4 @@
 datasets-env/*
 datasets.egg-info/*
+*.pyc
+__pycache__/*
